@@ -1,21 +1,31 @@
-```txt
-npm install
-npm run dev
-```
+# Auth Server
 
-```txt
-npm run deploy
-```
+> A serverless authentication service built to handle user authentication flows.
 
-[For generating/synchronizing types based on your Worker configuration run](https://developers.cloudflare.com/workers/wrangler/commands/#types):
+## What's inside
 
-```txt
-npm run cf-typegen
-```
+- Hono
+- Better Auth
+- Drizzle ORM
+- Turso
+- Cloudflare Worker
 
-Pass the `CloudflareBindings` as generics when instantiation `Hono`:
+## Development
 
-```ts
-// src/index.ts
-const app = new Hono<{ Bindings: CloudflareBindings }>()
-```
+| Description | Command |
+|------------|---------|
+| Starts the development server locally | `bun run dev` |
+| Running database server | `turso dev` |
+| Running the tests | `bun test` |
+| Applying database migrations | `bun run --env-file=.dev.vars db:migrate` |
+| Generating database schema | `bun run db:generate` |
+| Open drizzle studio | `bun run --env-file=.dev.vars db:studio` |
+
+## Default Providers
+
+- Email and Password
+- Google
+
+---
+
+Carlos Costa @ 2025
