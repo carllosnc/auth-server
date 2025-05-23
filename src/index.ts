@@ -6,7 +6,10 @@ import { betterAuthSettings } from './lib/auth'
 const app = new Hono<{Bindings: Bindings}>()
 
 app.get('/', (c) => {
-  return c.text('Hello Hono!')
+  return c.json({
+		project: 'Auth Server',
+		version: '0.0.1',
+	})
 })
 
 app.use(
