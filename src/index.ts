@@ -29,10 +29,10 @@ app.get('/', (c) => {
 app.use( "/api/auth/**", async (c, next) => {
 	const productionOrigins = c.env.PRODUCTION_ORIGINS.split(',')
 
-	cors({
+	const middleware = cors({
 		origin: [
-			...productionOrigins,
 			...origins,
+			...productionOrigins
 		],
 		allowHeaders: ["Content-Type", "Authorization"],
 		allowMethods: ["POST", "GET", "OPTIONS"],
@@ -41,7 +41,7 @@ app.use( "/api/auth/**", async (c, next) => {
 		credentials: true,
 	})
 
-	await next()
+	return middleware(c, next)
 })
 
 app.on(["POST", "GET"], "/api/auth/**", async (c) => {
