@@ -7,4 +7,5 @@ export type Bindings = {
   BETTER_AUTH_URL: string
   AUTH_GOOGLE_ID: string
   AUTH_GOOGLE_SECRET: string
+  PRODUCTION_ORIGINS: string
 }
