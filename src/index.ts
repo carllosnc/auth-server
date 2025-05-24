@@ -6,9 +6,23 @@ import { betterAuthSettings } from './lib/auth'
 const app = new Hono<{Bindings: Bindings}>()
 
 app.get('/', (c) => {
+	let isEnvSet = false
+
+	if (
+		!c.env.BETTER_AUTH_SECRET ||
+		!c.env.BETTER_AUTH_URL ||
+		!c.env.TURSO_DATABASE_URL ||
+		!c.env.TURSO_AUTH_TOKEN ||
+		!c.env.AUTH_GOOGLE_ID ||
+		!c.env.AUTH_GOOGLE_SECRET
+	) {
+		isEnvSet = true
+	}
+
   return c.json({
 		project: 'Auth Server',
 		version: '0.0.1',
+		checkEnv: isEnvSet,
 	})
 })
 
