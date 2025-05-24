@@ -27,7 +27,7 @@ app.get('/', (c) => {
 })
 
 app.use( "/api/auth/**", async (c, next) => {
-	const productionOrigins = c.env.PRODUCTION_ORIGINS.split(',')
+	const productionOrigins = c.env.PRODUCTION_ORIGINS ? c.env.PRODUCTION_ORIGINS.split(",") : []
 
 	const middleware = cors({
 		origin: [
