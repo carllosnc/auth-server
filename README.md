@@ -1,14 +1,14 @@
 # Auth Server
 
-> A serverless authentication service built to handle user authentication flows.
+> Minimal Auth Server
 
 ## What's inside
 
-- Hono
-- Better Auth
-- Drizzle ORM
-- Turso
-- Cloudflare Worker
+- [Hono](https://hono.dev) - HTTP Framework
+- [Better Auth](https://github.com/authc/better-auth) - Authentication Library
+- [Drizzle ORM](https://orm.drizzle.team) - Database ORM
+- [Turso](https://turso.tech) - Edge Database
+- [Cloudflare Workers](https://workers.cloudflare.com) - Serverless Platform
 
 ## Development
 
@@ -21,10 +21,40 @@
 | Generating database schema | `bun run db:generate` |
 | Open drizzle studio | `bun run db:studio` |
 
+## Deployment
+
+This project uses [Cloudflare Workers](https://workers.cloudflare.com) to deploy the application.
+
+```
+bun run deploy
+```
+
 ## Default Providers
 
-- Email and Password
 - Google
+
+## Client
+
+Example of how to use in a React app:
+
+```js
+import { createAuthClient } from "better-auth/react"
+import { jwtClient } from "better-auth/client/plugins";
+
+export const authClient = createAuthClient({
+  plugins: [
+    jwtClient()
+  ],
+  baseURL: process.env.BACKEND_URL,
+})
+
+export const signIn = async () => {
+  const data = await authClient.signIn.social({
+      callbackURL: process.env.CALLBACK_URL,
+      provider: "google"
+  })
+}
+```
 
 ---
 
