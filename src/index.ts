@@ -50,7 +50,7 @@ app.on(["POST", "GET"], "/api/auth/**", async (c) => {
 		tursoToken: c.env.TURSO_AUTH_TOKEN,
 		authGoogleId: c.env.AUTH_GOOGLE_ID,
 		authGoogleSecret: c.env.AUTH_GOOGLE_SECRET,
-  })
+	})
 
 	const result = await auth.handler(c.req.raw)
 	return result
